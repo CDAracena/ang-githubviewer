@@ -1,0 +1,47 @@
+<DOCTYPE !html>
+  <html ng-app="githubViewer">
+
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-route.min.js"> </script>
+
+  </head>
+
+  <body ng-controller="MainController">
+    {{githubUser}}
+
+    {{countdown}}
+    <form name="searchUser">
+      <input type="search" placeholder="search user" ng-model="githubUser">
+      <input type="submit" value="search" ng-click="search(githubUser)">
+    </form>
+    <h1> {{message}} </h1>
+    <div ng-show="user">
+      <h2> Person Info </h2>
+      <ul>
+        <li>{{user.name}} </li>
+        <li> {{user.location}}</li>
+        <li><img ng-src="{{user.avatar_url}}" title="{{user.name}}" /> </li>
+      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th> Name </th>
+            <th> Stars </th>
+            <th> Language </th>
+          </tr>
+        <tbody>
+          <tr ng-repeat="repo in repos | limitTo:10">
+            <td>{{repo.name}}</td>
+            <td> {{repo.stargazers_count}}</td>
+            <td> {{repo.language}} </td>
+          </tr>
+          </td>
+          </thead>
+      </table>
+      <h2>{{error}} </h2>
+    </div>
+    <div ng-controller="FunnyController">
+      <span> {{funny}} </span>
+    </div>
+  </body>
